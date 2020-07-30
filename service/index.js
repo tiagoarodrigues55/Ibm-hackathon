@@ -16,9 +16,10 @@ if(eventListen === 'have a car'){
 function getImage(moment){
   //selcionar o frame no momento passado como parâmetro
   validate.img = 'url do frame'
+  getImgInfo()
 }
-function getImgInfo(){
-Algorithmia("simNlkTxJYHeQKzDiRvn5fS+PNC1")
+async function getImgInfo(){
+await Algorithmia("simNlkTxJYHeQKzDiRvn5fS+PNC1")
   .algo("LgoBE/CarMakeandModelDetection/1.1.0")
   .pipe(validate.img)
   .then(function(output) { 
@@ -26,11 +27,12 @@ Algorithmia("simNlkTxJYHeQKzDiRvn5fS+PNC1")
     validate.model = output.result[0][0].model
     console.log(validate.make, validate.model)
    })
-  
+  validateType()
 }
 function validateType(){
   //verificar se o carro atende a demanda ou não
   validate.validate = 'true or false'
+  submitInfos()
 }
 function submitInfos(){
   

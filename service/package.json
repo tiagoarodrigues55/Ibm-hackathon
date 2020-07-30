@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
-    "algorithmia": "^0.3.10"
+    "algorithmia": "^0.3.10",
+    "sequelize": "^6.3.3"
   }
 }
