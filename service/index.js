@@ -5,7 +5,8 @@ const validate = {}
 validate.img = 'https://www.elaidata.com/assets/img/toyota_corolla.jpg'
 getImgInfo()
 
-validate.video = 'use socket.io to receive the video in real time'
+// validate.video = 'use socket.io to receive the video in real time'
+validate.video = './node_modules/GH010414.MP4'
 const eventListen = "use socket.io to indentify when the car take the ticket/'semParar'"
 
 
@@ -18,13 +19,14 @@ if(eventListen === 'have a car'){
 async function getImage(moment){
   await extractFrames({
     input: validate.video,
-    output: './screenshot-%i.jpg',
+    output: './screenshot.jpg',
     offsets: [
       moment
-    ]
+    ],
+    ffmpegPath: 'screnshots'
   })
   // validate.img = './screenshot-%i.jpg'
-  validate.img = './Novo-Onix-Premier-15_1280x768.jpg'
+  validate.img = 'http://localhost:3001/files/screenshot.jpg'
   getImgInfo()
 }
 async function getImgInfo(){
@@ -57,9 +59,11 @@ const express = require('express')
 const app = express()
 const routes = require('./routes')
 const cors = require('cors')
-
-app.use(express.json())
-
 app.use(cors())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true}))
+app.use(morgan("dev"))
+app.use('/files', 
+express.static(path.resolve(__dirname, "screenshots")))
 app.use(routes)
 app.listen(3001)
