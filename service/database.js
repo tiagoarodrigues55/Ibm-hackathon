@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize')
 const dbConfig = require('./databaseConfig')
 
-const Car = require('./car')
+const Car = require('./Car')
 
 
 

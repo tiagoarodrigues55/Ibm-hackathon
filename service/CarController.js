@@ -8,9 +8,9 @@ module.exports = {
   },
 
   async Storage(req, res){
-    const { make, model } = req.body
+    const { make, model, validate } = req.body
 
-    const car = await Car.create({ make, model })
+    const car = await Car.create({ make, model, validate })
 
     return res.json(car)
   }
